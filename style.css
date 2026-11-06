@@ -1,0 +1,50 @@
+/* Biography popup */
+
+.bio-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.bio-content {
+    background: linear-gradient(145deg, #222, #080808);
+    border: 1px solid #ffcc00;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.bio-content h2 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+}
+
+.bio-content p {
+    color: #ddd;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.bio-content button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card img {
+    cursor: pointer;
+}

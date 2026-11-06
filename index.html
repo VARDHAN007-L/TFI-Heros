@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFI Legends</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f9f8f8;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 40px 15px;
+    background: linear-gradient(135deg, #251500, #000);
+}
+
+header h1 {
+    color: gold;
+    font-size: 40px;
+}
+
+.heroes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    padding: 30px;
+}
+
+.card {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.card h2 {
+    color: rgb(243, 242, 241);
+}
+
+.card button {
+    margin: 15px;
+    padding: 10px 25px;
+    background: rgb(250, 250, 248);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Popup */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #171717;
+    border: 2px solid rgb(241, 240, 235);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    max-height: 85vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: rgb(255, 255, 254);
+}
+
+.modal-content p {
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.close {
+    background: rgb(227, 227, 224);
+    color: black;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: rgb(239, 238, 235);
+}
+</style>
+</head>
+
+<body>
+    <header>
+        <h1>TFI LEGENDS</h1>
+        <h2>The Icons of Telugu Cinema</h2>
+    </header>
+<section class="heroes">
+
+    <div class="card">
+    <img src="OIP.webp"
+         onclick="showBio('Pawan Kalyan')">
+    <h2>Pawan Kalyan</h2>
+    <p>Power Star</p>
+    <button onclick="showBio('Pawan Kalyan')">View Biography</button>
+    </div>
+    <div class="card">
+    <img src="8675159.jpg"
+         onclick="showBio('Mahesh Babu')">
+    <h2>Mahesh Babu</h2>
+    <p>Superstar</p>
+    <button onclick="showBio('Mahesh Babu')">View Biography</button>
+    </div>
+    <div class="card">
+    <img src="12639783.webp"
+         onclick="showBio('Prabhas')">
+    <h2>Prabhas</h2>
+    <p>Rebel Star</p>
+    <button onclick="showBio('Prabhas')">View Biography</button>
+    </div>
+    <div class="card">
+    <img src="download.webp"
+         onclick="showBio('Jr. NTR')">
+    <h2>Jr. NTR</h2>
+    <p>Young Tiger</p>
+    <button onclick="showBio('Jr. NTR')">View Biography</button>
+</div>
+
+<div class="card">
+    <img src="pushpa-2-the-rule-5120x2880-17953 (1).jpg"
+         onclick="showBio('Allu Arjun')">
+    <h2>Allu Arjun</h2>
+    <p>Icon Star</p>
+    <button onclick="showBio('Allu Arjun')">View Biography</button>
+</div>
+
+</section>
+
+<!-- Biography Popup -->
+
+<div class="modal" id="bioModal" onclick="closeBio(event)">
+    <div class="modal-content">
+
+        <h2 id="bioName"></h2>
+
+        <p id="bioDetails"></p>
+
+        <button class="close" onclick="closeBio()">CLOSE</button>
+
+    </div>
+</div>
+
+</footer>
+
+<script>
+
+const heroes = {
+
+"Mahesh Babu": {
+birth: "9 August 1975",
+debut: "Rajakumarudu (1999)",
+movies: "Pokiri, Okkadu, Srimanthudu, Maharshi",
+awards: "Multiple Filmfare Awards South"
+},
+
+"Prabhas": {
+birth: "23 October 1979",
+debut: "Eeswar (2002)",
+movies: "Baahubali, Salaar, Mirchi, Kalki 2898 AD",
+awards: "SIIMA and other film awards"
+},
+
+"Pawan Kalyan": {
+birth: "2 September 1971",
+debut: "Akkada Ammayi Ikkada Abbayi (1996)",
+movies: "Tholi Prema, Gabbar Singh, OG",
+awards: "Filmfare Award South"
+},
+
+"Jr. NTR": {
+birth: "20 May 1983",
+debut: "Ninnu Choodalani (2001)",
+movies: "Simhadri, Temper, Janatha Garage, RRR",
+awards: "Filmfare Awards South"
+},
+
+"Allu Arjun": {
+birth: "8 April 1982",
+debut: "Gangotri (2003)",
+movies: "Arya, Race Gurram, Pushpa",
+awards: "National Film Award and Filmfare Awards South"
+}
+
+};
+
+function showBio(name) {
+
+    const hero = heroes[name];
+
+    document.getElementById("bioName").textContent = name;
+
+    document.getElementById("bioDetails").innerHTML =
+        "<b>Birth Date:</b> " + hero.birth +
+        "<br><b>Film Debut:</b> " + hero.debut +
+        "<br><b>Popular Movies:</b> " + hero.movies +
+        "<br><b>Awards:</b> " + hero.awards;
+
+    document.getElementById("bioModal").style.display = "flex";
+
+}
+
+function closeBio(event) {
+
+    if (!event || event.target.id === "bioModal") {
+        document.getElementById("bioModal").style.display = "none";
+    }
+
+}
+
+function searchHeroes() {
+
+    const input = document.getElementById("search").value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        const name = card.querySelector("h2").textContent.toLowerCase();
+
+        card.style.display = name.includes(input) ? "block" : "none";
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
